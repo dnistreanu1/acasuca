@@ -2,11 +2,15 @@
 import React, { useState } from 'react';
 import { Input } from './generic/Input';
 import { Button } from './generic/Button';
-import { useUploadStorage } from '../hooks/useUploadStorage.query';
+import { useUploadImage } from '../hooks/useUploadImage.query';
+import { useParams } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const ImageUpload = () => {
+  const queryClient = useQueryClient();
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const { mutateAsync, isSuccess, isError, isLoading } = useUploadStorage();
+  const { mutateAsync, isSuccess, isError, isLoading } = useUploadImage();
+  const listingId = useParams<{ id: string }>().id;
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -17,8 +21,8 @@ export const ImageUpload = () => {
 
   const handleSaveImage = async () => {
     if (imageFile) {
-      await mutateAsync(imageFile);
-
+      await mutateAsync({ file: imageFile, listingId });
+      queryClient.invalidateQueries(['listing', listingId]);
       setImageFile(null);
     }
   };

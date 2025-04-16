@@ -1,10 +1,10 @@
-name: "CodeQL"
+name: 'CodeQL'
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   analyze:
@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        language: [ 'javascript', 'typescript' ] # or other languages
+        language: ['javascript', 'typescript'] # or other languages
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -25,7 +25,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
-          languages: ${{ matrix.language }}
+          languages: 'javascript,typescript'
           # optionally specify queries to run:
           # queries: ./codeql-queries
 
