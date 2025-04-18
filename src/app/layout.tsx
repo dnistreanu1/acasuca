@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import { NavigationBar } from './components/generic/NavigationBar';
+import { NavigationBar } from './components/NavigationBar';
 import { PageContainer } from './components/generic/PageContainer';
 import { ClientSideProviders } from './client.providers';
+import { BreadcrumbNavigation } from './components/BreadcrumbNavigation';
+import { Footer } from './components/generic/Footer';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -30,7 +32,11 @@ export default function RootLayout({
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <NavigationBar>
-            <PageContainer>{children}</PageContainer>
+            <PageContainer>
+              <BreadcrumbNavigation />
+              {children}
+            </PageContainer>
+            <Footer />
           </NavigationBar>
         </body>
       </html>
