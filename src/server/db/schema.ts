@@ -8,7 +8,7 @@ export const stateType = pgEnum('state_enum', ['new', 'almost_new', 'needs_repai
 export const listingsTable = pgTable(
   'listing',
   {
-    id: integer().primaryKey(),
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
     title: varchar({ length: 128 }).notNull(),
     /// Location
     country: varchar({ length: 128 }).notNull(),
@@ -56,16 +56,27 @@ export const userTable = pgTable('user', {
   rating: integer(),
 });
 
-export const userListing = pgTable('user_listing', {
+export const userListingTable = pgTable('user_listing', {
   userId: integer('user_id').references(() => userTable.id),
   listingId: integer('listing_id').references(() => listingsTable.id),
 });
 
-export const userComment = pgTable('user_comment', {
+export const userCommentTable = pgTable('user_comment', {
   userId: integer('user_id').references(() => userTable.id),
   listingId: integer('listing_id').references(() => listingsTable.id),
   commentText: text('comment_text').notNull(), // text of the comment
   createdAt: timestamp('created_at', { mode: 'date' }).defaultNow().notNull(), // when the comment was created
   updatedAt: timestamp('updated_at', { mode: 'date' }).defaultNow().notNull(), // when the comment was last updated
   rating: integer(), // optional rating associated with the comment
+});
+
+export const listingImagesTable = pgTable('listing_images', {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  listingId: integer('listing_id')
+    .references(() => listingsTable.id)
+    .notNull(),
+  imageId: varchar('image_id', { length: 128 }).notNull(),
+  isMain: boolean('is_main').default(false),
+  createdAt: timestamp('created_at', { mode: 'date' }).defaultNow(),
+  isActive: boolean('is_active').default(true),
 });
