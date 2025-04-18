@@ -2,12 +2,12 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { useDownloadImages } from '../hooks/useDownloadImages.query';
+import { useDownloadListingImages } from '../hooks/useDownloadListingImages.query';
 import { useParams } from 'next/navigation';
 
-export const ImageDownload = () => {
+export const ListingImageDownload = () => {
   const listingId = useParams<{ id: string }>().id;
-  const { data: images, isLoading, isSuccess, isError } = useDownloadImages(listingId);
+  const { data: images, isLoading, isSuccess, isError } = useDownloadListingImages(listingId);
 
   if (isLoading) {
     return <p className="text-blue-400">Downloading...</p>;

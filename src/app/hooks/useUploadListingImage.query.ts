@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-export const useUploadImage = () => {
+export const useUploadListingImage = () => {
   const mutation = useMutation({
     mutationKey: ['imageUpload'],
     mutationFn: async ({ file, listingId }: { file: File; listingId: string }) => {
@@ -14,7 +14,7 @@ export const useUploadImage = () => {
       formData.append('isMain', 'false');
       formData.append('isActive', 'true');
 
-      return await fetch('/api/storage', {
+      return await fetch('/api/storage/listing', {
         method: 'POST',
         body: formData,
       });

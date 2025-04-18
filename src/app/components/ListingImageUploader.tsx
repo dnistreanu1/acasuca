@@ -2,14 +2,14 @@
 import React, { useState } from 'react';
 import { Input } from './generic/Input';
 import { Button } from './generic/Button';
-import { useUploadImage } from '../hooks/useUploadImage.query';
+import { useUploadListingImage } from '../hooks/useUploadListingImage.query';
 import { useParams } from 'next/navigation';
 import { useQueryClient } from '@tanstack/react-query';
 
-export const ImageUpload = () => {
+export const ListingImageUploader = () => {
   const queryClient = useQueryClient();
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const { mutateAsync, isSuccess, isError, isLoading } = useUploadImage();
+  const { mutateAsync, isSuccess, isError, isLoading } = useUploadListingImage();
   const listingId = useParams<{ id: string }>().id;
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
