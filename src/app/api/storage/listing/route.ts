@@ -62,7 +62,8 @@ export async function GET(req: Request) {
       status: 200,
       headers: {
         'Content-Type': data[0].contentType || 'image/jpeg',
-        'Cache-Control': 'public, max-age=60, stale-while-revalidate=30',
+        'Cache-Control':
+          env.APP_ENV === 'development' ? 'no-store, max-age=0' : 'public, max-age=60, stale-while-revalidate=30',
       },
     });
   } catch (error) {

@@ -9,7 +9,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from '@/app/components/generic/NavigationBarTemplate';
+} from '@/app/components/library/NavigationMenu';
 import Image from 'next/image';
 
 const components: { title: string; href: string; description: string }[] = [
