@@ -5,7 +5,7 @@ import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-reac
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/generic/button';
+import { Button } from '@/app/components/library/Button';
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -153,7 +153,17 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
   );
 }
 
-function CarouselPrevious({ className, variant = 'outline', size = 'icon', ...props }: React.ComponentProps<typeof Button>) {
+interface CarouselPreviousNextProps {
+  iconSize?: number;
+}
+
+function CarouselPrevious({
+  className,
+  variant = 'outline',
+  size = 'icon',
+  iconSize,
+  ...props
+}: React.ComponentProps<typeof Button> & CarouselPreviousNextProps) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (

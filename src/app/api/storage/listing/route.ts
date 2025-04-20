@@ -48,7 +48,6 @@ export async function GET(req: Request) {
 
     const fileMetadata = await listingService.getListingImagesIds(Number(listingId));
     const fileKeys = fileMetadata.map((file) => file.imageId);
-    logger.warn('File keys:', fileKeys);
     const { data, error } = await storageService.downloadImagesFromS3(env.AWS_BUCKET_NAME, fileKeys);
 
     if (error) {

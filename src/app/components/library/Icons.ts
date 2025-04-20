@@ -4,6 +4,8 @@ import {
   AlertCircle,
   Check,
   ChevronDown,
+  X,
+
   // add any additional icons you need
 } from 'lucide-react';
 
@@ -13,5 +15,6 @@ export const Icons = {
   AlertCircle,
   Check,
   ChevronDown,
+  X,
   // ... export additional icons as needed
 };
