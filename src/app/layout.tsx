@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { NavigationBar } from './components/NavigationBar';
-import { PageContainer } from './components/generic/PageContainer';
+import { PageContainer } from './components/library/PageContainer';
 import { ClientSideProviders } from './client.providers';
 import { BreadcrumbNavigation } from './components/BreadcrumbNavigation';
-import { Footer } from './components/generic/Footer';
+import { Footer } from './components/library/Footer';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -36,7 +36,7 @@ export default function RootLayout({
               <BreadcrumbNavigation />
               {children}
             </PageContainer>
-            <Footer />
+            <Footer text="© 2025 Acasuca, BIT ROCKET" imageSrc="/content/images/logo.svg" imageAlt="logo" />
           </NavigationBar>
         </body>
       </html>

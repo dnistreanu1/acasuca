@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import { Input } from './generic/Input';
-import { Button } from './generic/Button';
+import { Input } from './library/Input';
+import { Button } from './library/Button';
 import { useUploadListingImage } from '../hooks/useUploadListingImage.query';
 import { useParams } from 'next/navigation';
 import { useQueryClient } from '@tanstack/react-query';
