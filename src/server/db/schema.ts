@@ -1,5 +1,17 @@
 import { sql } from 'drizzle-orm';
-import { boolean, decimal, integer, numeric, pgEnum, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
+import {
+  boolean,
+  decimal,
+  integer,
+  numeric,
+  pgEnum,
+  pgTable,
+  primaryKey,
+  text,
+  timestamp,
+  uuid,
+  varchar,
+} from 'drizzle-orm/pg-core';
 
 export const ownerType = pgEnum('owner_type_enum', ['individual', 'agency', 'developer'] as const);
 export const buildingType = pgEnum('building_type_enum', ['apartment', 'house', 'industrial'] as const);
@@ -8,7 +20,9 @@ export const stateType = pgEnum('state_enum', ['new', 'almost_new', 'needs_repai
 export const listingsTable = pgTable(
   'listing',
   {
-    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    id: uuid()
+      .default(sql`gen_random_uuid()`)
+      .primaryKey(),
     title: varchar({ length: 128 }).notNull(),
     /// Location
     country: varchar({ length: 128 }).notNull(),
@@ -19,11 +33,11 @@ export const listingsTable = pgTable(
     floor: integer().notNull(),
     maxFloor: integer('max_floor').notNull(),
     ///
-    price: numeric({ precision: 10, scale: 0 }).notNull(),
+    price: numeric({ precision: 10, scale: 2 }).notNull(),
     date: timestamp({ mode: 'date' }).defaultNow().notNull(),
     description: text().notNull(),
     isNegociable: boolean('is_negociable').default(false),
-    area: decimal().notNull(),
+    area: decimal({ precision: 6, scale: 2 }).notNull(),
     rooms: integer().notNull(),
     ownerType: ownerType('owner_type').notNull(),
     ownershipType: varchar('ownership_type', { length: 128 }).notNull(), // tip drept de proprietate?
@@ -42,7 +56,9 @@ export const listingsTable = pgTable(
 );
 
 export const userTable = pgTable('user', {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: uuid()
+    .default(sql`gen_random_uuid()`)
+    .primaryKey(),
   username: varchar({ length: 128 }).notNull(),
   email: varchar({ length: 128 }).notNull(),
   password: varchar({ length: 128 }).notNull(),
@@ -56,27 +72,37 @@ export const userTable = pgTable('user', {
   rating: integer(),
 });
 
-export const userListingTable = pgTable('user_listing', {
-  userId: integer('user_id').references(() => userTable.id),
-  listingId: integer('listing_id').references(() => listingsTable.id),
-});
+export const userListingTable = pgTable(
+  'user_listing',
+  {
+    userId: uuid('user_id').references(() => userTable.id),
+    listingId: uuid('listing_id').references(() => listingsTable.id),
+  },
+  (table) => [primaryKey({ columns: [table.userId, table.listingId] })]
+);
 
-export const userCommentTable = pgTable('user_comment', {
-  userId: integer('user_id').references(() => userTable.id),
-  listingId: integer('listing_id').references(() => listingsTable.id),
+export const listingCommentsTable = pgTable('user_comment', {
+  id: uuid()
+    .default(sql`gen_random_uuid()`)
+    .primaryKey(),
+  userId: uuid('user_id').references(() => userTable.id),
+  listingId: uuid('listing_id').references(() => listingsTable.id),
   commentText: text('comment_text').notNull(), // text of the comment
   createdAt: timestamp('created_at', { mode: 'date' }).defaultNow().notNull(), // when the comment was created
   updatedAt: timestamp('updated_at', { mode: 'date' }).defaultNow().notNull(), // when the comment was last updated
   rating: integer(), // optional rating associated with the comment
 });
 
-export const listingImagesTable = pgTable('listing_images', {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  listingId: integer('listing_id')
-    .references(() => listingsTable.id)
-    .notNull(),
-  imageId: varchar('image_id', { length: 128 }).notNull(),
-  isMain: boolean('is_main').default(false),
-  createdAt: timestamp('created_at', { mode: 'date' }).defaultNow(),
-  isActive: boolean('is_active').default(true),
-});
+export const listingImagesTable = pgTable(
+  'listing_images',
+  {
+    listingId: uuid('listing_id')
+      .references(() => listingsTable.id)
+      .notNull(),
+    imageId: varchar('image_id', { length: 128 }).notNull(),
+    isMain: boolean('is_main').default(false),
+    createdAt: timestamp('created_at', { mode: 'date' }).defaultNow(),
+    isActive: boolean('is_active').default(true),
+  },
+  (table) => [primaryKey({ columns: [table.listingId, table.imageId] })]
+);

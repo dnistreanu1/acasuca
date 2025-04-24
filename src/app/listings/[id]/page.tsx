@@ -3,10 +3,10 @@ import { logger } from '@/server/logger';
 import { listingService } from '@/server/services/listing.service';
 import { notFound } from 'next/navigation';
 
-export default async function Listing({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function Listing({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
 
-  const listing = await listingService.getListingById(Number(id));
+  const listing = await listingService.getListingById(id);
   if (!listing) {
     logger.error('Page not found');
     return notFound();
@@ -14,7 +14,7 @@ export default async function Listing({ params }: { params: { id: string } }) {
 
   return (
     <div>
-      <h1 className="py-4">{listing.title}</h1>
+      <h1 className="py-4">{listing.title.toUpperCase()}</h1>
       <ListingCarouselWrapper />
     </div>
   );

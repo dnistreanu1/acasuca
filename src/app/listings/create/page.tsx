@@ -1,10 +1,10 @@
 import { ListingImageUploader } from '@/app/components/ListingImageUploader';
 import React from 'react';
 
-export const page = () => {
+export default async function CreateListingPage() {
   return (
     <div>
       <ListingImageUploader />
     </div>
   );
-};
+}
