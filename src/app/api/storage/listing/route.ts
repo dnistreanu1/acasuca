@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   try {
     const formData = await req.formData();
     const file = formData.get('file') as File;
-    const listingId = Number(formData.get('listingId'));
+    const listingId = formData.get('listingId') as string;
     const isMain = Boolean(formData.get('isMain'));
     const isActive = Boolean(formData.get('isActive'));
 
@@ -46,7 +46,7 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: 'No file key provided' }, { status: 400 });
     }
 
-    const fileMetadata = await listingService.getListingImagesIds(Number(listingId));
+    const fileMetadata = await listingService.getListingImagesIds(listingId);
     const fileKeys = fileMetadata.map((file) => file.imageId);
     const { data, error } = await storageService.downloadImagesFromS3(env.AWS_BUCKET_NAME, fileKeys);
 

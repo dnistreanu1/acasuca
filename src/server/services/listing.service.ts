@@ -1,21 +1,21 @@
 import { db } from '../db';
 import { listingImagesTable } from '../db/schema';
 
-const getListingById = async (id: number) => {
+const getListingById = async (id: string) => {
   const listing = await db.query.listingsTable.findFirst({
     where: (listingTable, { eq }) => eq(listingTable.id, id),
   });
   return listing;
 };
 
-const getListingImagesIds = async (id: number) => {
+const getListingImagesIds = async (id: string) => {
   const listingImages = await db.query.listingImagesTable.findMany({
     where: (listingImagesTable, { eq }) => eq(listingImagesTable.listingId, id),
   });
   return listingImages;
 };
 
-const addImageToListing = async (listingId: number, imageId: string, isMain: boolean, isActive: boolean) => {
+const addImageToListing = async (listingId: string, imageId: string, isMain: boolean, isActive: boolean) => {
   const listingImage = await db.insert(listingImagesTable).values({
     listingId,
     imageId,

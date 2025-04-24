@@ -8,11 +8,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:seed": "tsx src/server/db/seeds.ts",
+    "db:seed": "tsx src/server/db/scripts/seeds.ts",
+    "db:reset": "tsx src/server/db/scripts/reset-database.ts",
     "db": "drizzle-kit"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.787.0",
+    "@faker-js/faker": "^9.7.0",
     "@heroui/modal": "^2.2.14",
     "@radix-ui/react-navigation-menu": "^1.2.6",
     "@radix-ui/react-separator": "^1.1.4",

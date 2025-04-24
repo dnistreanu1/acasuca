@@ -69,6 +69,7 @@ export function ListingCarouselWrapper() {
 
   // When closing the modal, update primary with modal carousel's selected slide
   const handleModalClose = () => {
+    logger.debug('handleModalClose');
     if (primaryApi && secondaryApi) {
       const selectedIndex = secondaryApi.selectedScrollSnap();
       primaryApi.scrollTo(selectedIndex, true);
@@ -107,7 +108,12 @@ export function ListingCarouselWrapper() {
         height={90}
       />
 
-      <Modal isOpen={isOpen} onClose={handleModalClose} className="relative flex items-center justify-center" isDismissable>
+      <Modal
+        isOpen={isOpen}
+        onClose={handleModalClose}
+        className="fixed inset-0 z-50 flex items-center justify-center"
+        isDismissable
+      >
         <ModalContent className="h-full bg-white rounded-lg shadow-lg">
           <ModalHeader className="p-0">
             <Button
