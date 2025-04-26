@@ -5,8 +5,15 @@ import {
   Check,
   ChevronDown,
   X,
-
-  // add any additional icons you need
+  MoveDiagonal2,
+  LayoutGrid,
+  LocateFixed,
+  CircleCheckBig,
+  BadgeAlert,
+  PhoneCallIcon,
+  AtSignIcon,
+  EyeIcon,
+  HeartIcon,
 } from 'lucide-react';
 
 // You can export them grouped inside an Icons object
@@ -16,5 +23,14 @@ export const Icons = {
   Check,
   ChevronDown,
   X,
+  MoveDiagonal2,
+  LayoutGrid,
+  LocateFixed,
+  CircleCheckBig,
+  BadgeAlert,
+  PhoneCallIcon,
+  AtSignIcon,
+  EyeIcon,
+  HeartIcon,
   // ... export additional icons as needed
 };

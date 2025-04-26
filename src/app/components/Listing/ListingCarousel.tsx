@@ -1,6 +1,5 @@
 'use client';
 
-import { Card, CardContent } from '@/app/components/library/Card';
 import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../library/Carousel';
 import Image from 'next/image';
 import Autoplay from 'embla-carousel-autoplay';
@@ -34,23 +33,21 @@ export function ListingCarousel({
       <CarouselContent>
         {imagesBase64.map((imageUrl, index) => (
           <CarouselItem key={index}>
-            <Card className="p-2 flex items-center justify-center">
-              <CardContent className="relative" style={{ width: `${imageWidth}px`, height: `${imageHeight}px` }}>
-                <Image
-                  src={imageUrl}
-                  width={imageWidth}
-                  height={imageHeight}
-                  alt="Downloaded Image"
-                  onClick={onImageClick}
-                  className="h-full w-full object-cover"
-                ></Image>
-              </CardContent>
-            </Card>
+            <div className="relative" style={{ width: `${imageWidth}px`, height: `${imageHeight}px` }}>
+              <Image
+                src={imageUrl}
+                width={imageWidth}
+                height={imageHeight}
+                alt="Downloaded Image"
+                onClick={onImageClick}
+                className="h-full object-cover"
+              ></Image>
+            </div>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="" />
-      <CarouselNext className="" />
+      <CarouselPrevious className="ml-16" />
+      <CarouselNext className="mr-16" />
     </Carousel>
   );
 }

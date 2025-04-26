@@ -6,6 +6,7 @@ import { PageContainer } from './components/library/PageContainer';
 import { ClientSideProviders } from './client.providers';
 import { BreadcrumbNavigation } from './components/BreadcrumbNavigation';
 import { Footer } from './components/library/Footer';
+import { Separator } from './components/library/Separator';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -36,6 +37,7 @@ export default function RootLayout({
               <BreadcrumbNavigation />
               {children}
             </PageContainer>
+            <Separator orientation="horizontal" variant="primary" />
             <Footer text="© 2025 Acasuca, BIT ROCKET" imageSrc="/content/images/logo.svg" imageAlt="logo" />
           </NavigationBar>
         </body>

@@ -11,6 +11,7 @@ import { ListingCarousel } from './ListingCarousel';
 import { ListingCarouselThumbnails } from './ListingCarouselThumbnails';
 import { Icons } from '../library/Icons';
 import { ListingCarouselModal } from './ListingCarouselModal';
+import { Separator } from '../library/Separator';
 
 export function ListingCarouselWrapper() {
   const [isOpen, setIsOpen] = useState(false);
@@ -89,17 +90,17 @@ export function ListingCarouselWrapper() {
   }
 
   return (
-    <div className="w-3/4">
+    <div className="w-4/6">
       {/* Primary Carousel */}
       <ListingCarousel
         imagesBase64={imagesBase64}
-        imageWidth={650}
-        imageHeight={450}
+        imageWidth={950}
+        imageHeight={500}
         setApi={setPrimaryApi}
         onImageClick={() => setIsOpen(true)}
         delayInMs={5000}
       />
-      <div className="my-1"></div>
+      <Separator orientation="horizontal" variant="primary" />
       <ListingCarouselThumbnails
         imagesBase64={imagesBase64}
         currentIndex={modalCurrentIndex}
@@ -126,20 +127,21 @@ export function ListingCarouselWrapper() {
             </Button>
           </ModalHeader>
           <ModalBody className="relative justify-center items-center">
+            <Separator orientation="horizontal" variant="primary" />
             <ListingCarouselModal
               imagesBase64={imagesBase64}
               imageWidth={1300}
-              imageHeight={850}
+              imageHeight={820}
               setApi={setSecondaryApi}
               delayInMs={10000}
             />
-            <div className="my-1"></div>
+            <Separator orientation="horizontal" variant="primary" />
             <ListingCarouselThumbnails
               imagesBase64={imagesBase64}
               currentIndex={modalCurrentIndex}
               api={secondaryApi!}
-              width={180}
-              height={120}
+              width={150}
+              height={100}
             />
           </ModalBody>
           <ModalFooter className="flex justify-end pt-1"></ModalFooter>
