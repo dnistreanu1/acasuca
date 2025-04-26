@@ -41,8 +41,8 @@ export function ListingCarouselModal({
                 alt="Downloaded Image"
                 onClick={onImageClick}
               ></Image>
-              <CarouselPrevious className="absolute top-1/2 -left-12 z-20" />
-              <CarouselNext className="absolute top-1/2 -right-12 z-20" />
+              <CarouselPrevious className="absolute top-1/2 left-12 z-20" />
+              <CarouselNext className="absolute top-1/2 right-12 z-20" />
             </div>
           </CarouselItem>
         ))}
