@@ -1,11 +1,18 @@
+import { env } from '@/env';
 import { db } from '../db';
 import { listingImagesTable } from '../db/schema';
+import { storageService } from './storage.service';
 import { userService } from './user.service';
 
 const getListingById = async (id: string) => {
   const listing = await db.query.listingsTable.findFirst({
     where: (listingTable, { eq }) => eq(listingTable.id, id),
   });
+  return listing;
+};
+
+const getAllListings = async () => {
+  const listing = await db.query.listingsTable.findMany();
   return listing;
 };
 
@@ -40,10 +47,22 @@ const addImageToListing = async (listingId: string, imageId: string, isMain: boo
   return listingImage;
 };
 
+const getListingImages = async (listingId: string) => {
+  const fileMetadata = await listingService.getListingImagesIds(listingId);
+  const fileKeys = fileMetadata.map((file) => file.imageId);
+  const { data, error } = await storageService.downloadImagesFromS3(env.AWS_BUCKET_NAME, fileKeys);
+  if (error) {
+    throw new Error('Error downloading images from S3');
+  }
+  return data;
+};
+
 // Only import this
 export const listingService = {
   getListingById,
   getListingImagesIds,
   addImageToListing,
   getListingOwnerInfo,
+  getAllListings,
+  getListingImages,
 };

@@ -14,6 +14,12 @@ import {
   AtSignIcon,
   EyeIcon,
   HeartIcon,
+  BanknoteIcon,
+  ChartCandlestickIcon,
+  UserIcon,
+  BathIcon,
+  BuildingIcon,
+  Building2Icon,
 } from 'lucide-react';
 
 // You can export them grouped inside an Icons object
@@ -32,5 +38,11 @@ export const Icons = {
   AtSignIcon,
   EyeIcon,
   HeartIcon,
+  BanknoteIcon,
+  ChartCandlestickIcon,
+  UserIcon,
+  BathIcon,
+  BuildingIcon,
+  Building2Icon,
   // ... export additional icons as needed
 };

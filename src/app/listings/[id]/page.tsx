@@ -13,7 +13,6 @@ export default async function Listing({ params }: { params: Promise<{ id: string
 
   const listing = await listingService.getListingById(id);
   const ownerInfo = await listingService.getListingOwnerInfo(id);
-  logger.info('ownerInfo:', ownerInfo);
   if (!listing || !ownerInfo) {
     logger.error('Page not found');
     return notFound();

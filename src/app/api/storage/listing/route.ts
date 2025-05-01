@@ -67,6 +67,6 @@ export async function GET(req: Request) {
     });
   } catch (error) {
     logger.error('Error downloading file:', error);
-    return NextResponse.json({ error: 'Failed to download file' }, { status: 500 });
+    return NextResponse.json({ errorMessage: 'Failed to download file', error }, { status: 500 });
   }
 }

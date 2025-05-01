@@ -3,7 +3,6 @@
 import React from 'react';
 import { Button } from '../library/Button';
 import { Text } from '../library/Text';
-import { logger } from '@/server/logger';
 
 interface CredditButtonProps {
   creditText: string;
@@ -12,7 +11,7 @@ interface CredditButtonProps {
 export const CreditButton = ({ creditText }: CredditButtonProps) => {
   const handleOnClickCreditButton = () => {
     // TODO: Handle credit button click
-    logger.info('Credit button clicked');
+    alert('Credit button clicked');
   };
   return (
     <Button variant={'outline'}>
