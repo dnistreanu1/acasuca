@@ -2,12 +2,13 @@ import { db } from '../';
 import { listingsTable, listingCommentsTable, userListingTable, userTable } from '../schema';
 import { faker } from '@faker-js/faker';
 import { logger } from '@/server/logger';
+import { toPascalCase } from '@/server/db/utils/text';
 
 // Generate fake data without specifying "id"
 // (The database will generate the id using gen_random_uuid())
 const generateListing = (): typeof listingsTable.$inferInsert => ({
-  title: faker.lorem.words(3),
-  description: faker.lorem.sentence(),
+  title: toPascalCase(faker.lorem.words(5)),
+  description: faker.lorem.sentence(5),
   price: faker.commerce.price(),
   date: faker.date.past(),
   address: faker.location.streetAddress(), // using location to avoid deprecation

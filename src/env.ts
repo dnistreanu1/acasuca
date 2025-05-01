@@ -16,9 +16,9 @@ export const env = createEnv({
     APP_ENV: z.enum(['test', 'development', 'staging', 'demo', 'production']).default('development'),
     AWS_REGION: z.string().default('eu-south-2'),
     AWS_BUCKET_NAME: z.string().default('evidence-management-demo'),
-    AWS_ACCESS_KEY: z.string().optional(),
-    AWS_SECRET_ACCESS_KEY: z.string().optional(),
-    AWS_S3_ENDPOINT: z.string().optional(),
+    AWS_ACCESS_KEY: z.string(),
+    AWS_SECRET_ACCESS_KEY: z.string(),
+    AWS_S3_ENDPOINT: z.string(),
   },
 
   /**
@@ -28,6 +28,7 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_NODE_ENV: z.enum(['test', 'development', 'staging', 'demo', 'production']).default('development'),
+    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: z.string(), // FIXME: hide the api key from the browser by fetching google api server-side
   },
 
   /**
@@ -45,6 +46,7 @@ export const env = createEnv({
     AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY,
     AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
     AWS_S3_ENDPOINT: process.env.AWS_S3_ENDPOINT,
+    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,

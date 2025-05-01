@@ -1,3 +1,4 @@
+import { toBase64ImageSrc } from '@/server/db/utils/image';
 import { DownloadedImage } from '@/server/types/storage';
 import { useQuery } from '@tanstack/react-query';
 
@@ -9,7 +10,7 @@ export const useDownloadListingImages = (listingId: string) => {
         method: 'GET',
       });
       const data = (await response.json()) as DownloadedImage[];
-      const dataBase64 = data.map((image) => `data:${image.contentType};base64,${image.bufferBase64}`);
+      const dataBase64 = data.map((image) => toBase64ImageSrc(image.bufferBase64, image.contentType));
       return dataBase64;
     },
     enabled: !!listingId,

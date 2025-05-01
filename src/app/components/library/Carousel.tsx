@@ -177,7 +177,10 @@ function CarouselPrevious({
         className
       )}
       disabled={!canScrollPrev}
-      onClick={scrollPrev}
+      onClick={(event) => {
+        event.preventDefault();
+        scrollPrev();
+      }}
       {...props}
     >
       <ArrowLeft />
@@ -200,7 +203,10 @@ function CarouselNext({ className, variant = 'outline', size = 'icon', ...props 
         className
       )}
       disabled={!canScrollNext}
-      onClick={scrollNext}
+      onClick={(event) => {
+        event.preventDefault();
+        scrollNext();
+      }}
       {...props}
     >
       <ArrowRight />
