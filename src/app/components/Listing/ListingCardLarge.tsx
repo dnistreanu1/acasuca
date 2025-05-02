@@ -1,6 +1,7 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import { Card, CardContent, CardFooter, CardHeader } from '../library/Card';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Text } from '../library/Text';
 import { Icons } from '../library/Icons';
@@ -30,6 +31,9 @@ interface ListingCardProps {
 }
 
 const PLACEHOLDER_IMAGE_PATH = '/content/images/placeholder.jpg';
+// Define the heights for collapsed and expanded states.
+const COLLAPSED_HEIGHT = 350; // collapsed image height (px)
+const EXPANDED_HEIGHT = 450; // expanded image height (px)
 
 export const ListingCardLarge = ({
   title,
@@ -47,36 +51,62 @@ export const ListingCardLarge = ({
   ownerName,
   description,
   className,
-  imageWidth = 550,
-  imageHeight = 350,
+  imageWidth = 450,
+  imageHeight = 350, // this value is not used for container height here; we use predefined heights
 }: ListingCardProps) => {
+  // State to determine if the accordion is expanded.
+  const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+
+  // Calculate price per area for display.
   const pricePerArea = (Number(price) / area).toFixed(2);
 
   return (
-    <Link href={`/listings/${id}`}>
-      <div className="flex flex-row ">
-        <Carousel
-          style={{ width: `${imageWidth}px`, height: `${imageHeight}px` }}
-          className="rounded-l-xl overflow-hidden shadow-md"
-        >
+    <Link
+      href={`/listings/${id}`}
+      onClick={(event) => {
+        if ((event.target as HTMLElement).closest('[data-prevent-link]')) {
+          event.preventDefault();
+        }
+      }}
+    >
+      {/* 
+          Apply Tailwind's transition classes. 
+          When accordion is open, the outer container height is EXPANDED_HEIGHT;
+          otherwise, it is COLLAPSED_HEIGHT.
+      */}
+      <div
+        className={`
+          flex flex-row items-stretch overflow-hidden rounded-xl
+          transition-all duration-500
+          ${isAccordionOpen ? `h-[${EXPANDED_HEIGHT}px]` : `h-[${COLLAPSED_HEIGHT}px]`}
+        `}
+      >
+        {/* Carousel with the image */}
+        <Carousel style={{ width: `${imageWidth}px` }} className="h-full">
           <CarouselContent>
             {(imagesBase64?.length ? imagesBase64 : [PLACEHOLDER_IMAGE_PATH]).map((imageUrl, index) => (
-              <CarouselItem key={index} className="relative " style={{ width: `${imageWidth}px`, height: `${imageHeight}px` }}>
-                <Image src={imageUrl} fill alt="Downloaded Image" />
+              <CarouselItem key={index} className="transition-all duration-500 ease-in-out">
+                {/* This container also transitions its height */}
+                <div
+                  className={`relative transition-all duration-500 ${
+                    isAccordionOpen ? `h-[${EXPANDED_HEIGHT}px]` : `h-[${COLLAPSED_HEIGHT}px]`
+                  }`}
+                >
+                  <img src={imageUrl} alt="Listing Image" className="object-center w-full h-full" />
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
           <CarouselPrevious className="ml-16" />
           <CarouselNext className="mr-16" />
         </Carousel>
-        <Card
-          className={`w-120 h-90 rounded-none rounded-r-xl shadow-md border-none ${className}`}
-          style={{ height: `${imageHeight}px` }}
-        >
-          <CardHeader className="relative tracking-widest font-bold">
+
+        {/* Card section */}
+        <Card className={`flex flex-col w-[550px] rounded-l-none ${className}`}>
+          <CardHeader className="tracking-widest font-bold">
             <Text className="text-2xl">{`${price} ${currencyUnit}`}</Text>
           </CardHeader>
-          <CardContent className="my-0 tracking-widest flex flex-col">
+          <CardContent className="tracking-widest flex flex-col flex-1">
             <div className="flex flex-col gap-1">
               <Text>{title}</Text>
               <div className="flex gap-1 items-center">
@@ -87,7 +117,7 @@ export const ListingCardLarge = ({
               </div>
             </div>
             <Separator variant="secondary" size="lg" />
-            <div className="grid grid-cols-3 tracking-widest gap-y-4">
+            <div className="grid grid-cols-4 gap-y-4">
               <div className="flex gap-2 items-center">
                 <Icons.BathIcon />
                 <Text className="text-sm">{`${rooms} camere`}</Text>
@@ -104,12 +134,20 @@ export const ListingCardLarge = ({
                 <Icons.BuildingIcon />
                 <Text className="text-sm">{`${floor}/${maxFloor}`}</Text>
               </div>
+              <div className="flex gap-2 items-center">
+                <Icons.AlertCircle />
+                <Text className="text-sm">{currencyUnit}</Text>
+              </div>
             </div>
-            <Link href={''}>
-              <ListingCardAccordion description={description} />
-            </Link>
+
+            <ListingCardAccordion
+              description={description}
+              onClickCapture={() => {
+                setIsAccordionOpen((prev) => !prev);
+              }}
+            />
           </CardContent>
-          <CardFooter>
+          <CardFooter className="flex items-end h-full">
             <ListingCardFooter ownerName={ownerName} ownerType={ownerType} />
           </CardFooter>
         </Card>

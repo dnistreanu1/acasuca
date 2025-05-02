@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Tabs, TabsList, TabsTrigger } from '../library/Tabs';
 import { Separator } from '../library/Separator';
 
@@ -11,12 +11,26 @@ interface ListingTabsProps {
   mapView: React.ReactNode;
 }
 
+const getInitialTabsView = (): 'small' | 'large' | 'map' => {
+  const value = localStorage.getItem('tabsView');
+  if (value === 'small' || value === 'large' || value === 'map') {
+    return value;
+  } else {
+    return 'small';
+  }
+};
+
 export function ListingTabs({ className, smallCards, largeCards, mapView }: ListingTabsProps) {
-  const [tabsView, setTabsView] = useState<'small' | 'large' | 'map'>('small');
+  const [tabsView, setTabsView] = useState<'small' | 'large' | 'map'>(getInitialTabsView());
+
+  // Save the selected tab view in local storage
+  useEffect(() => {
+    localStorage.setItem('tabsView', tabsView);
+  }, [tabsView]);
 
   return (
     <>
-      <Tabs defaultValue="small" className={`${className}`}>
+      <Tabs defaultValue={tabsView} className={`${className}`}>
         <TabsList className="flex gap-6" color="red">
           <TabsTrigger
             value="small"

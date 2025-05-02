@@ -1,22 +1,44 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../library/Accordion';
 import { Text } from '../library/Text';
 
 interface ListingCardAccordionProps {
   description: string;
+  onClickCapture: () => void;
   className?: string;
 }
 
-export const ListingCardAccordion = ({ className, description }: ListingCardAccordionProps) => {
+export const ListingCardAccordion = ({ className, description, onClickCapture }: ListingCardAccordionProps) => {
+  // We use a controlled Accordion state.
+  const [accordionOpen, setAccordionOpen] = useState<'accordionOpenValue' | undefined>(undefined);
+
   return (
-    <Accordion type="single" collapsible className={`${className}`}>
-      <AccordionItem value="item-1">
-        <AccordionTrigger className="cursor-pointer ">
-          <Text children="Vezi descrierea anuntului" variant="caption" className="text-gray-400" />
+    <Accordion
+      type="single"
+      collapsible
+      className={className}
+      value={accordionOpen}
+      onValueChange={(value) => {
+        console.log('Accordion value changed:', value);
+        setAccordionOpen(value as 'accordionOpenValue');
+      }}
+    >
+      <AccordionItem value="accordionOpenValue">
+        <AccordionTrigger
+          // Add our custom data attribute.
+          data-prevent-link
+          className="cursor-pointer"
+          onClickCapture={() => {
+            onClickCapture();
+          }}
+        >
+          <Text variant="caption" className="text-gray-400">
+            Vezi descrierea anuntului
+          </Text>
         </AccordionTrigger>
-        <AccordionContent className="h-24 truncate">
+        <AccordionContent>
           <Text as="p" className="p-2" variant="caption">
             {description}
           </Text>
