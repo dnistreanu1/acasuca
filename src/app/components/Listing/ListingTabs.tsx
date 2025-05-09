@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Tabs, TabsList, TabsTrigger } from '../library/Tabs';
 import { Separator } from '../library/Separator';
+import { useTranslations } from 'next-intl';
 
 interface ListingTabsProps {
   className?: string;
@@ -11,17 +12,16 @@ interface ListingTabsProps {
   mapView: React.ReactNode;
 }
 
-const getInitialTabsView = (): 'small' | 'large' | 'map' => {
-  const value = localStorage.getItem('tabsView');
-  if (value === 'small' || value === 'large' || value === 'map') {
-    return value;
-  } else {
-    return 'small';
-  }
+type TabsView = 'small' | 'large' | 'map';
+
+const getInitialTabsView = (): TabsView => {
+  const value = localStorage.getItem('tabsView') || 'small';
+  return value as TabsView;
 };
 
 export function ListingTabs({ className, smallCards, largeCards, mapView }: ListingTabsProps) {
-  const [tabsView, setTabsView] = useState<'small' | 'large' | 'map'>(getInitialTabsView());
+  const [tabsView, setTabsView] = useState<TabsView>(getInitialTabsView());
+  const t = useTranslations('listing.tabs');
 
   // Save the selected tab view in local storage
   useEffect(() => {
@@ -37,21 +37,21 @@ export function ListingTabs({ className, smallCards, largeCards, mapView }: List
             onClick={() => setTabsView('small')}
             className={`w-fit px-8 shadow-2xl ${tabsView === 'small' ? 'bg-white text-grey' : 'bg-white text-black'}`}
           >
-            Small
+            {t('small')}
           </TabsTrigger>
           <TabsTrigger
             value="large"
             onClick={() => setTabsView('large')}
             className={`w-fit px-8 ${tabsView === 'large' ? ' bg-white text-grey' : 'bg-white text-black'}`}
           >
-            Large
+            {t('large')}
           </TabsTrigger>
           <TabsTrigger
             value="map"
             onClick={() => setTabsView('map')}
             className={`w-fit px-8 ${tabsView === 'map' ? ' bg-white text-grey' : 'bg-white text-black'}`}
           >
-            Map
+            {t('map')}
           </TabsTrigger>
         </TabsList>
       </Tabs>

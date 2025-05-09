@@ -1,0 +1,94 @@
+{
+  "common": {
+    "agency": "Agency",
+    "contact": "Contact",
+    "currency": {
+      "dollar": "$",
+      "euro": "€",
+      "leu": "lei"
+    },
+    "description": "Description",
+    "developer": "Developer",
+    "home": "Home",
+    "house": "House",
+    "listings": "Listings",
+    "individual": "Individual",
+    "new": "New",
+    "no": "No",
+    "noInfo": "No information",
+    "units": {
+      "squareMeter": "m²"
+    },
+    "yes": "Yes"
+  },
+  "homePage": {
+    "title": "Welcome to acasuca"
+  },
+  "listing": {
+    "largeCard": {
+      "accordionTitle": "See listing details",
+      "bathrooms": "Bathrooms",
+      "contact": "Contact",
+      "rooms": "Rooms"
+    },
+    "page": {
+      "apartmentToRent": "Apartment to rent",
+      "apartmentToSell": "Apartment to sell",
+      "details": {
+        "acceptsCredit": "Accepts credit",
+        "additionalInfo": "Additional info",
+        "area": "Area",
+        "availableFrom": "Available from",
+        "bathrooms": "Bathrooms",
+        "buildingAndMaterials": {
+          "accordiontitle": "Building and materials",
+          "yearOfConstruction": "Year of construction",
+          "yearOfOperation": "Year of operation",
+          "yearOfRenovation": "Year of renovation"
+        },
+        "detached": "Detached",
+        "facilities": {
+          "accordionTitle": "Facilities"
+        },
+        "floor": "Floor",
+        "heating": "Heating",
+        "heatingType": {
+          "central": "Central",
+          "individual": "Individual"
+        },
+        "propertyType": "Property type",
+        "rent": "Rent",
+        "rooms": "Rooms",
+        "ownerType": "Owner type",
+        "semiDetached": "Semi-Detached",
+        "stateOfTheProperty": "State of the property",
+        "totalFloors": "Total Floors"
+      },
+      "header": {
+        "ourInternalId": "Our internal ID",
+        "sellerInternalId": "Seller internal ID"
+      },
+      "listingFrom": "Listing from",
+      "otherDetails": {
+        "title": "Other details",
+        "totalLikes": "Total likes",
+        "totalViews": "Total views"
+      },
+      "sellerDetails": {
+        "listingFrom": "Listing from"
+      },
+      "totalLikes": "Total likes",
+      "totalViews": "Total views"
+    },
+    "tabs": {
+      "large": "Large",
+      "map": "Map",
+      "small": "Small"
+    }
+  },
+  "navigationBar": {
+    "residentialBuildings": "Residential Buildings",
+    "toRent": "To Rent",
+    "toSell": "To Sell"
+  }
+}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Link from 'next/link';
+import { Link } from '../../i18n/navigation';
 import { cn } from '@/lib/utils';
 import {
   NavigationMenu,
@@ -9,26 +9,29 @@ import {
   navigationMenuTriggerStyle,
 } from '@/app/components/library/NavigationMenu';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
-const components: { title: string; href: string; description: string }[] = [
+const components: { title: 'toSell' | 'toRent' | 'residentialBuildings'; href: string; description: string }[] = [
   {
-    title: 'De vanzare',
-    href: '/buy',
+    title: 'toSell' as const,
+    href: '/listings',
     description: '',
   },
   {
-    title: 'De inchiriat',
+    title: 'toRent' as const,
     href: '/rent',
     description: '',
   },
   {
-    title: 'Ansambluri rezidentiale',
+    title: 'residentialBuildings' as const,
     href: '/residential',
     description: '',
   },
 ];
 
 export function NavigationBar({ children }: { children: React.ReactNode }) {
+  const t = useTranslations('navigationBar');
+
   return (
     <>
       <div className="flex h-16 items-center justify-center border-b-1">
@@ -43,7 +46,7 @@ export function NavigationBar({ children }: { children: React.ReactNode }) {
               {components.map((component, id) => (
                 <NavigationMenuItem key={id}>
                   <Link href={component.href} passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>{component.title}</NavigationMenuLink>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>{t(component.title)}</NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
               ))}

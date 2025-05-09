@@ -9,7 +9,7 @@ export const ListingImageUploader = () => {
   const [listingId, setListingId] = useState<string>('');
   const queryClient = useQueryClient();
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const { mutateAsync, isSuccess, isError, isLoading } = useUploadListingImage();
+  const { mutateAsync, isSuccess, isError, isPending } = useUploadListingImage();
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -21,7 +21,7 @@ export const ListingImageUploader = () => {
   const handleSaveImage = async () => {
     if (imageFile) {
       await mutateAsync({ file: imageFile, listingId });
-      queryClient.invalidateQueries(['listing', listingId]);
+      queryClient.invalidateQueries({ queryKey: ['listingImages'] });
       setImageFile(null);
     }
   };
@@ -30,14 +30,14 @@ export const ListingImageUploader = () => {
     <>
       <Input type="text" placeholder="Listing ID" className="mb-4" onBlur={(event) => setListingId(event.target.value)} />
       <Input type="file" placeholder="Click Me" onChange={(event) => handleFileChange(event)} className="max-w-1/3" />
-      <Button onClick={handleSaveImage} className="mt-4" disabled={isLoading}>
+      <Button onClick={handleSaveImage} className="mt-4" disabled={isPending}>
         Submit
       </Button>
 
       <div className="pt-4">
-        {isLoading && <p className="text-blue-400">Uploading...</p>}
-        {!isLoading && isSuccess && <p className="text-green-400">Image uploaded successfully!</p>}
-        {!isLoading && isError && <p className="text-red-400">Error uploading image.</p>}
+        {isPending && <p className="text-blue-400">Uploading...</p>}
+        {!isPending && isSuccess && <p className="text-green-400">Image uploaded successfully!</p>}
+        {!isPending && isError && <p className="text-red-400">Error uploading image.</p>}
       </div>
     </>
   );

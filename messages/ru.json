@@ -1,0 +1,94 @@
+{
+  "common": {
+    "agency": "Агентство",
+    "contact": "Контакт",
+    "currency": {
+      "dollar": "$",
+      "euro": "€",
+      "leu": "лей"
+    },
+    "description": "Описание",
+    "developer": "Застройщик",
+    "home": "Главная",
+    "house": "Дом",
+    "listings": "Объявления",
+    "individual": "Частное лицо",
+    "new": "Новый",
+    "no": "Нет",
+    "noInfo": "Нет информации",
+    "units": {
+      "squareMeter": "м²"
+    },
+    "yes": "Да"
+  },
+  "homePage": {
+    "title": "Добро пожаловать в acasuca"
+  },
+  "listing": {
+    "largeCard": {
+      "accordionTitle": "Смотреть детали объявления",
+      "bathrooms": "Ванные",
+      "contact": "Контакт",
+      "rooms": "Комнаты"
+    },
+    "page": {
+      "apartmentToRent": "Квартира в аренду",
+      "apartmentToSell": "Квартира на продажу",
+      "details": {
+        "acceptsCredit": "Принимает кредит",
+        "additionalInfo": "Дополнительная информация",
+        "area": "Площадь",
+        "availableFrom": "Доступно с",
+        "bathrooms": "Ванные",
+        "buildingAndMaterials": {
+          "accordiontitle": "Здание и материалы",
+          "yearOfConstruction": "Год постройки",
+          "yearOfOperation": "Год эксплуатации",
+          "yearOfRenovation": "Год ремонта"
+        },
+        "detached": "Отдельный",
+        "facilities": {
+          "accordionTitle": "Удобства"
+        },
+        "floor": "Этаж",
+        "heating": "Отопление",
+        "heatingType": {
+          "central": "Центральное",
+          "individual": "Индивидуальное"
+        },
+        "propertyType": "Тип недвижимости",
+        "rent": "Аренда",
+        "rooms": "Комнаты",
+        "ownerType": "Тип владельца",
+        "semiDetached": "Частично смежный",
+        "stateOfTheProperty": "Состояние недвижимости",
+        "totalFloors": "Всего этажей"
+      },
+      "header": {
+        "ourInternalId": "Наш внутренний ID",
+        "sellerInternalId": "Внутренний ID продавца"
+      },
+      "listingFrom": "Объявление от",
+      "otherDetails": {
+        "title": "Другие детали",
+        "totalLikes": "Всего лайков",
+        "totalViews": "Всего просмотров"
+      },
+      "sellerDetails": {
+        "listingFrom": "Объявление от"
+      },
+      "totalLikes": "Всего лайков",
+      "totalViews": "Всего просмотров"
+    },
+    "tabs": {
+      "large": "Большой",
+      "map": "Карта",
+      "small": "Малый"
+    }
+  },
+  "navigationBar": {
+    "residentialBuildings": "Жилые здания",
+    "toRent": "Аренда",
+    "toSell": "На продажу"
+  }
+}
