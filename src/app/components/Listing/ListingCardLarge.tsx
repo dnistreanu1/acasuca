@@ -2,13 +2,14 @@
 
 import React, { useState } from 'react';
 import { Card, CardContent, CardFooter, CardHeader } from '../library/Card';
-import Link from 'next/link';
 import { Text } from '../library/Text';
 import { Icons } from '../library/Icons';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../library/Carousel';
 import { Separator } from '../library/Separator';
 import { ListingCardFooter } from './ListingCardFooter';
 import { ListingCardAccordion } from './ListingCardAccordion';
+import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 
 interface ListingCardProps {
   id: string;
@@ -52,8 +53,8 @@ export const ListingCardLarge = ({
   description,
   className,
   imageWidth = 450,
-  imageHeight = 350, // this value is not used for container height here; we use predefined heights
 }: ListingCardProps) => {
+  const t = useTranslations('listing.largeCard');
   // State to determine if the accordion is expanded.
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
@@ -120,7 +121,7 @@ export const ListingCardLarge = ({
             <div className="grid grid-cols-4 gap-y-4">
               <div className="flex gap-2 items-center">
                 <Icons.BathIcon />
-                <Text className="text-sm">{`${rooms} camere`}</Text>
+                <Text className="text-sm">{`${rooms} ${t('rooms')}`}</Text>
               </div>
               <div className="flex gap-2 items-center">
                 <Icons.MoveDiagonal2 />

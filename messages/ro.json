@@ -1,0 +1,94 @@
+{
+  "common": {
+    "agency": "Agenție",
+    "contact": "Contact",
+    "currency": {
+      "dollar": "$",
+      "euro": "€",
+      "leu": "lei"
+    },
+    "description": "Descriere",
+    "developer": "Dezvoltator",
+    "home": "Acasă",
+    "house": "Casă",
+    "listings": "Anunțuri",
+    "individual": "Persoană fizică",
+    "new": "Nou",
+    "no": "Nu",
+    "noInfo": "Nicio informație",
+    "units": {
+      "squareMeter": "m²"
+    },
+    "yes": "Da"
+  },
+  "homePage": {
+    "title": "Bun venit la acasuca"
+  },
+  "listing": {
+    "largeCard": {
+      "accordionTitle": "Vezi detalii anunț",
+      "bathrooms": "Băi",
+      "contact": "Contact",
+      "rooms": "Camere"
+    },
+    "page": {
+      "apartmentToRent": "Apartament de închiriat",
+      "apartmentToSell": "Apartament de vânzare",
+      "details": {
+        "acceptsCredit": "Acceptă credit",
+        "additionalInfo": "Informații suplimentare",
+        "area": "Suprafață",
+        "availableFrom": "Disponibil din",
+        "bathrooms": "Băi",
+        "buildingAndMaterials": {
+          "accordiontitle": "Construcție și materiale",
+          "yearOfConstruction": "Anul construcției",
+          "yearOfOperation": "Anul operaționalizării",
+          "yearOfRenovation": "Anul renovării"
+        },
+        "detached": "Individual",
+        "facilities": {
+          "accordionTitle": "Facilități"
+        },
+        "floor": "Etaj",
+        "heating": "Încălzire",
+        "heatingType": {
+          "central": "Centrală",
+          "individual": "Individuală"
+        },
+        "propertyType": "Tipul proprietății",
+        "rent": "Chirie",
+        "rooms": "Camere",
+        "ownerType": "Tip proprietar",
+        "semiDetached": "Semidecomandat",
+        "stateOfTheProperty": "Starea proprietății",
+        "totalFloors": "Total etaje"
+      },
+      "header": {
+        "ourInternalId": "ID-ul nostru intern",
+        "sellerInternalId": "ID-ul intern al vânzătorului"
+      },
+      "listingFrom": "Anunț de la",
+      "otherDetails": {
+        "title": "Alte detalii",
+        "totalLikes": "Total aprecieri",
+        "totalViews": "Total vizualizări"
+      },
+      "sellerDetails": {
+        "listingFrom": "Anunț de la"
+      },
+      "totalLikes": "Total aprecieri",
+      "totalViews": "Total vizualizări"
+    },
+    "tabs": {
+      "large": "Mare",
+      "map": "Hartă",
+      "small": "Mic"
+    }
+  },
+  "navigationBar": {
+    "residentialBuildings": "Clădiri rezidențiale",
+    "toRent": "De închiriat",
+    "toSell": "De vânzare"
+  }
+}

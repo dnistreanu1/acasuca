@@ -1,11 +1,11 @@
 import { listingService } from '@/server/services/listing.service';
 import React from 'react';
-import { ListingCardSmall } from '../components/Listing/ListingCardSmall';
+import { ListingCardSmall } from '@/app/components/Listing/ListingCardSmall';
 import { logger } from '@/server/logger';
 import { toBase64ImageSrc } from '@/server/db/utils/image';
-import { ListingTabs } from '../components/Listing/ListingTabs';
-import { ListingCardLarge } from '../components/Listing/ListingCardLarge';
-import ListingMap from '../components/Listing/ListingMap';
+import { ListingTabs } from '@/app/components/Listing/ListingTabs';
+import { ListingCardLarge } from '@/app/components/Listing/ListingCardLarge';
+import ListingMap from '@/app/components/Listing/ListingMap';
 
 export default async function ListingsPage() {
   const listings = await listingService.getAllListings();

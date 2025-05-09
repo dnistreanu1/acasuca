@@ -2,6 +2,7 @@ import React from 'react';
 import { Text } from '../library/Text';
 import { Icons } from '../library/Icons';
 import { CreditButton } from './CredditButton';
+import { useTranslations } from 'next-intl';
 
 interface ListingHeaderProps {
   title: string;
@@ -27,6 +28,7 @@ export const ListingHeader = ({
   internalSellerId,
 }: ListingHeaderProps) => {
   const pricePerArea = (price / area).toFixed(2);
+  const t = useTranslations('listing.page.header');
 
   return (
     <div className="flex flex-1 flex-col bg-white px-6 py-5 gap-6 shadow-lg">
@@ -44,8 +46,8 @@ export const ListingHeader = ({
           <Text children={location} as="span" />
         </div>
         <div className="flex flex-col gap-2 mr-3">
-          <Text children={`ID intern Acasuca: ${internalAppListingId}`} as="span" className="text-gray-400" />
-          <Text children={`ID intern Vanzator: ${internalSellerId}`} as="span" className="text-gray-400" />
+          <Text children={`${t('ourInternalId')}: ${internalAppListingId}`} as="span" className="text-gray-400" />
+          <Text children={`${t('sellerInternalId')}: ${internalSellerId}`} as="span" className="text-gray-400" />
         </div>
       </div>
     </div>

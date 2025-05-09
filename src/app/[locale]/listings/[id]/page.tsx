@@ -6,11 +6,13 @@ import { ListingOtherDetails } from '@/app/components/Listing/ListingOtherDetail
 import { ListingSellerDetails } from '@/app/components/Listing/ListingSellerDetails';
 import { logger } from '@/server/logger';
 import { listingService } from '@/server/services/listing.service';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 export default async function Listing({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-
+  const t = await getTranslations('listing.page');
+  const tCommon = await getTranslations('common');
   const listing = await listingService.getListingById(id);
   const ownerInfo = await listingService.getListingOwnerInfo(id);
   if (!listing || !ownerInfo) {
@@ -47,7 +49,7 @@ export default async function Listing({ params }: { params: Promise<{ id: string
           />
           <Separator orientation="horizontal" variant="primary" />
           <ListingDetails
-            title={'Apartament de vanzare'}
+            title={t('apartmentToSell')}
             area={Number(listing.area)}
             floor={listing.floor}
             buildingType={listing.buildingType}
@@ -61,8 +63,8 @@ export default async function Listing({ params }: { params: Promise<{ id: string
             rooms={listing.rooms}
             areaSymbol={'m²'}
             description={listing.description}
-            heatingType="autonom"
-            stateOfTheProperty="new"
+            heatingType={t('details.heatingType.individual')}
+            stateOfTheProperty={tCommon('new')}
           />
         </div>
         <Separator orientation="vertical" variant="primary" />

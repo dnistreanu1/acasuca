@@ -1,9 +1,9 @@
 import React from 'react';
 import { Card, CardContent, CardFooter, CardHeader } from '../library/Card';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Text } from '../library/Text';
 import { Icons } from '../library/Icons';
+import { Link } from '@/i18n/navigation';
 
 interface ListingCardProps {
   id: string;

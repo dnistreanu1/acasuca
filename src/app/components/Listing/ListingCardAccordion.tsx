@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../library/Accordion';
 import { Text } from '../library/Text';
+import { useTranslations } from 'next-intl';
 
 interface ListingCardAccordionProps {
   description: string;
@@ -13,6 +14,7 @@ interface ListingCardAccordionProps {
 export const ListingCardAccordion = ({ className, description, onClickCapture }: ListingCardAccordionProps) => {
   // We use a controlled Accordion state.
   const [accordionOpen, setAccordionOpen] = useState<'accordionOpenValue' | undefined>(undefined);
+  const t = useTranslations('listing.largeCard');
 
   return (
     <Accordion
@@ -35,7 +37,7 @@ export const ListingCardAccordion = ({ className, description, onClickCapture }:
           }}
         >
           <Text variant="caption" className="text-gray-400">
-            Vezi descrierea anuntului
+            {t('accordionTitle')}
           </Text>
         </AccordionTrigger>
         <AccordionContent>
